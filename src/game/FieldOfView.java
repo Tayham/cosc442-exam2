@@ -7,7 +7,21 @@ public class FieldOfView {
 	private boolean[][] visible;
 
 	public boolean isVisible(int x, int y, int z) {
-		return z == depth && x >= 0 && y >= 0 && x < visible.length && y < visible[0].length && visible[x][y];
+		return axisLogicCheck(x, y, z) && visibilityCheck(x, y);
+	}
+
+	/**
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return
+	 */
+	private boolean axisLogicCheck(int x, int y, int z) {
+		return z == depth && x >= 0 && y >= 0;
+	}
+
+	private boolean visibilityCheck(int x, int y) {
+		return x < visible.length && y < visible[0].length && visible[x][y];
 	}
 
 	private Tile[][][] tiles;
@@ -30,27 +44,40 @@ public class FieldOfView {
 		}
 	}
 
-	public void update(int wx, int wy, int wz, int r) {
-		depth = wz;
+	public void update(int world_x, int world_y, int world_z, int r) {
+		depth = world_z;
 		visible = new boolean[world.width()][world.height()];
 
 		for (int x = -r; x < r; x++) {
 			for (int y = -r; y < r; y++) {
-				if (x * x + y * y > r * r)
+
+				if (fieldOfViewCheck(x, y, r))
 					continue;
 
-				if (wx + x < 0 || wx + x >= world.width() || wy + y < 0 || wy + y >= world.height())
+				if (worldCheck(x, y, world_x, world_y))
 					continue;
 
-				for (Point p : new Line(wx, wy, wx + x, wy + y)) {
-					Tile tile = world.tile(p.x, p.y, wz);
+				for (Point p : new Line(world_x, world_y, world_x + x, world_y + y)) {
+					Tile tile = world.tile(p.x, p.y, world_z);
 					visible[p.x][p.y] = true;
-					tiles[p.x][p.y][wz] = tile;
+					tiles[p.x][p.y][world_z] = tile;
 
 					if (!tile.isGround())
 						break;
 				}
 			}
 		}
+	}
+
+	private boolean fieldOfViewCheck(int x, int y, int r) {
+		if (x * x + y * y > r * r)
+			return true;
+		return false;
+	}
+
+	private boolean worldCheck(int x, int y, int world_x, int world_y) {
+		if (world_x + x < 0 || world_x + x >= world.width() || world_y + y < 0 || world_y + y >= world.height())
+			return true;
+		return false;
 	}
 }
