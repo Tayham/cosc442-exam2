@@ -258,9 +258,7 @@ public class Creature {
 		amount = (int) (Math.random() * amount) + 1;
 
 		Object[] params2 = new Object[params.length + 1];
-		for (int i = 0; i < params.length; i++) {
-			params2[i] = params[i];
-		}
+		System.arraycopy(params, 0, params2, 0, params.length + 1);
 		params2[params2.length - 1] = amount;
 
 		doAction(action, params2);
@@ -408,7 +406,7 @@ public class Creature {
 
 		StringBuilder builder = new StringBuilder();
 		for (String word : words) {
-			builder.append(" ");
+			builder.append(' ');
 			builder.append(word);
 		}
 
