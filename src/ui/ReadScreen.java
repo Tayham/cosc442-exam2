@@ -7,7 +7,7 @@ public class ReadScreen extends InventoryBasedScreen {
 
 	private int sx;
 	private int sy;
-	
+
 	public ReadScreen(Creature player, int sx, int sy) {
 		super(player);
 		this.sx = sx;

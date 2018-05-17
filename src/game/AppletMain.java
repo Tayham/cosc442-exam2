@@ -10,11 +10,11 @@ import ui.StartScreen;
 
 public class AppletMain extends Applet implements KeyListener {
 	private static final long serialVersionUID = 2560255315130084198L;
-	
+
 	private AsciiPanel terminal;
 	private Screen screen;
-	
-	public AppletMain(){
+
+	public AppletMain() {
 		super();
 		terminal = new AsciiPanel();
 		add(terminal);
@@ -22,15 +22,15 @@ public class AppletMain extends Applet implements KeyListener {
 		addKeyListener(this);
 		repaint();
 	}
-	
+
 	@Override
-	public void init(){
+	public void init() {
 		super.init();
 		this.setSize(terminal.getWidth() + 20, terminal.getHeight() + 20);
 	}
 
 	@Override
-	public void repaint(){
+	public void repaint() {
 		terminal.clear();
 		screen.displayOutput(terminal);
 		super.repaint();
@@ -43,8 +43,10 @@ public class AppletMain extends Applet implements KeyListener {
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) { }
+	public void keyReleased(KeyEvent e) {
+	}
 
 	@Override
-	public void keyTyped(KeyEvent e) { }
+	public void keyTyped(KeyEvent e) {
+	}
 }

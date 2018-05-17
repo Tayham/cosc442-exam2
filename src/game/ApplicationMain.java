@@ -10,11 +10,11 @@ import java.awt.event.KeyListener;
 
 public class ApplicationMain extends JFrame implements KeyListener {
 	private static final long serialVersionUID = 1060623638149583738L;
-	
+
 	private AsciiPanel terminal;
 	private Screen screen;
-	
-	public ApplicationMain(){
+
+	public ApplicationMain() {
 		super();
 		terminal = new AsciiPanel();
 		add(terminal);
@@ -23,9 +23,9 @@ public class ApplicationMain extends JFrame implements KeyListener {
 		addKeyListener(this);
 		repaint();
 	}
-	
+
 	@Override
-	public void repaint(){
+	public void repaint() {
 		terminal.clear();
 		screen.displayOutput(terminal);
 		super.repaint();
@@ -38,11 +38,13 @@ public class ApplicationMain extends JFrame implements KeyListener {
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) { }
+	public void keyReleased(KeyEvent e) {
+	}
 
 	@Override
-	public void keyTyped(KeyEvent e) { }
-	
+	public void keyTyped(KeyEvent e) {
+	}
+
 	public static void main(String[] args) {
 		ApplicationMain app = new ApplicationMain();
 		app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

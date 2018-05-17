@@ -6,7 +6,7 @@ import game.Item;
 public class ThrowScreen extends InventoryBasedScreen {
 	private int sx;
 	private int sy;
-	
+
 	public ThrowScreen(Creature player, int sx, int sy) {
 		super(player);
 		this.sx = sx;

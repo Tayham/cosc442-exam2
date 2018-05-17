@@ -7,11 +7,11 @@ import game.Creature;
 
 public class LoseScreen implements Screen {
 	private Creature player;
-	
-	public LoseScreen(Creature player){
+
+	public LoseScreen(Creature player) {
 		this.player = player;
 	}
-	
+
 	@Override
 	public void displayOutput(AsciiPanel terminal) {
 		terminal.writeCenter("R.I.P.", 3);

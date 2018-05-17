@@ -1,15 +1,14 @@
 package game;
 
-
 public class GoblinAi extends CreatureAi {
 	private Creature player;
-	
+
 	public GoblinAi(Creature creature, Creature player) {
 		super(creature);
 		this.player = player;
 	}
 
-	public void onUpdate(){
+	public void onUpdate() {
 		if (canUseBetterEquipment())
 			useBetterEquipment();
 		else if (canRangedWeaponAttack(player))
